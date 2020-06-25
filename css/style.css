@@ -129,6 +129,10 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+#header.on {
+  position: fixed;
+}
+
 #header .inner {
   width: 975px;
   height: 77px;
@@ -137,6 +141,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 1s;
+}
+
+#header.on .inner {
+  height: 52px;
 }
 
 /*a 태그 투명하게 */
@@ -158,12 +167,21 @@ body {
   position: absolute;
   right: -15px;
   top: 0;
+  transition: all 0.5s;
 }
 
 /* 동일선상에 배치하기 */
 /* float, inline 속성 활용 */
 #header .inner .logo div {
   vertical-align: middle;
+}
+
+#header.on .inner .logo div:nth-child(2) {
+  opacity: 0;
+}
+
+#header.on .inner .logo .sprite_insta_logo:after {
+  opacity: 0;
 }
 
 #search-field {
@@ -190,6 +208,7 @@ body {
 
 #header .inner .logo div:nth-child(2) {
   transform: translateY(2px);
+  transition: all 0.5s;
 }
 
 /* 기준점을 주는 녀석 */
@@ -369,6 +388,11 @@ body {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.side_box.on {
+  position: fixed;
+  top: 80px;
 }
 
 .side_box .profile_thumb {
