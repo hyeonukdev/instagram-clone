@@ -61,10 +61,37 @@ function delegationFunc(e) {
       }
     })
 
-  } else if (elem.matches('[data-name="share"]')) {
-    console.log("공유!");
+  } else if (elem.matches('[data-name="comment"]')) {
+
+    let content = document.querySelector('#add-comment-post-37 > input[type=text]').value;
+
+    console.log(content);
+
+    if (content.length > 140) {
+      alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 : ' + content.length);
+      return;
+    }
+
+    $.ajax({
+      type: 'GET',
+      url: './comment.html',
+      data: {
+        'pk': 37,
+        'content': content,
+      },
+      dataType: 'html',
+      success: function (data) {
+        document.querySelector('#comment-list-post-37').insertAdjacentHTML('afterbegin', data);
+      },
+      error: function (request, status, error) {
+        alert('문제가 발생했습니다.');
+      }
+    });
+
+    document.querySelector('#add-comment-post-37 > input[type=text]').value = '';
+
   } else if (elem.matches('[data-name="more"]')) {
-    console.log("더보기!");
+
   }
   elem.classList.toggle("on");
 }
